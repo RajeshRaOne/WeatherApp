@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+    <link rel="shortcut icon" href="https://cdn3.iconfinder.com/data/icons/bebreezee-weather-symbols/691/icon-weather-sunsleetlight-512.png" type="image/x-icon">
+</head>
+
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Weather APP
+                </h1>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <h2 >Current location</h2> 
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    {% for city_weather in current_weather_data %}
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-50x50">
+                                    <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <span class="title">{{ city_weather.city }}</span>
+                                        <br>
+                                        <span class="subtitle">{{ city_weather.temperature }}° F</span>
+                                        <br> 
+                                        {{ city_weather.description }}
+                                        <br> 
+                                        <span class="title">5 Days Forecast</span>
+                                        <br>
+                                        Day1 : {{ city_weather.day1 | first }} Temp : {{ city_weather.day1 | last }}° F
+                                        <br> 
+                                        Day2 : {{ city_weather.day2 | first }} Temp : {{ city_weather.day2 | last }}° F
+                                        <br> 
+                                        Day3 : {{ city_weather.day3 | first }} Temp : {{ city_weather.day3 | last }}° F
+                                        <br> 
+                                        Day4 : {{ city_weather.day4 | first }} Temp : {{ city_weather.day4 | last }}° F
+                                        <br> 
+                                        Day5 : {{ city_weather.day5 | first }} Temp : {{ city_weather.day5 | last }}° F
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <h2 >Select City</h2>
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <form method="post" class="col-md"">
+                        {% csrf_token %}
+                        <div class=" input-group">
+                        <!-- <label for="cities"Select City:</label> -->
+                        <select id="cities" name="city" class="form-control">
+                          <option value="Kuala Lumpur">Kuala Lumpur</option>
+                          <option value="Klang">Klang</option>
+                          <option value="Ipoh">Ipoh</option>
+                          <option value="Butterworth">Butterworth</option>
+                          <option value="Johor Bahru">Johor Bahru</option>
+                          <option value="George Town">George Town</option>
+                          <option value="Petaling Jaya">Petaling Jaya</option>
+                          <option value="Kuantan">Kuantan</option>
+                          <option value="Shah Alam">Shah Alam</option>
+                          <option value="Kota Bharu">Kota Bharu</option>
+                          <option value="Melaka">Melaka</option>
+                          <option value="Kota Kinabalu">Kota Kinabalu</option>
+                          <option value="Seremban">Seremban</option>
+                          <option value="Sandakan">Sandakan</option>
+                          <option value="Kuching">Kuching</option>
+                          <option value="Putrajaya">Putrajaya</option>
+                          <option value="Kangar">Kangar</option>
+                          <option value="Labuan">Labuan</option>
+                          <option value="Tumpat">Tumpat</option>
+                          <option value="Ketereh">Ketereh</option>
+                        </select>
+                        <div class="input-group-btn">
+                          <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+
+                        </div>
+                        <form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    {% for city_weather in weather_data %}
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-50x50">
+                                    <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <span class="title">{{ city_weather.city }}</span>
+                                        <br>
+                                        <span class="subtitle">{{ city_weather.temperature }}° F</span>
+                                        <br> 
+                                        {{ city_weather.description }}
+                                        <br> 
+                                        <span class="title">5 Days Forecast</span>
+                                        <br>
+                                        Day1 : {{ city_weather.day1 | first }} Temp : {{ city_weather.day1 | last }}° F
+                                        <br> 
+                                        Day2 : {{ city_weather.day2 | first }} Temp : {{ city_weather.day2 | last }}° F
+                                        <br> 
+                                        Day3 : {{ city_weather.day3 | first }} Temp : {{ city_weather.day3 | last }}° F
+                                        <br> 
+                                        Day4 : {{ city_weather.day4 | first }} Temp : {{ city_weather.day4 | last }}° F
+                                        <br> 
+                                        Day5 : {{ city_weather.day5 | first }} Temp : {{ city_weather.day5 | last }}° F
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    </footer>
+</body>
+
+</html>
